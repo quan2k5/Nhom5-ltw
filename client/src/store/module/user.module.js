@@ -19,10 +19,10 @@ const users= {
       const findNumber=state.users.findIndex((item)=>{
         return payload.id==item.id;
       })
-      if(payload.block ){
+      if(payload.block!=undefined){
         state.users[findNumber].block=payload.block;
       }
-      if(payload.status){
+      if(payload.status!=undefined){
         state.users[findNumber].status=payload.status;
       }
     },

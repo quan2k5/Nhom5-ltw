@@ -41,7 +41,6 @@ onMounted(async () => {
     let obj = { id: Math.floor(Math.random() * 10001), idQuestion: question.id, answer: '',status:false };
     yourAnswerList.push(obj);
   });
-  
   store.dispatch('getFilterQuestions', queryString.stringify(params));
 });
 const startTimer = (durationInMinutes) => {

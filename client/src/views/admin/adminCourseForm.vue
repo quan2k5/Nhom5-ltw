@@ -28,10 +28,13 @@ onMounted(()=>{
 const validateTitle=()=>{
     let courses=[...allCourses.value];
     if(props.status=='update'){
+        console.log('run11');
         courses=courses.filter((item)=>{
-            return item.id!=currentCourse.id;
+            return item.id!=currentCourse.value.id;
         })
     }
+    console.log('111111',courses);
+    
     const findNumber=courses.findIndex((item)=>{
         return item.title==currentCourse.value.title;
     })

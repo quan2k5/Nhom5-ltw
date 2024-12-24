@@ -19,6 +19,7 @@ import { getAllUsers } from '@/api/User';
 import userRegister from '@/views/auth/userRegister.vue';
 import adminAll from '@/views/admin/adminAll.vue';
 import NotFound from '@/views/NotFound.vue';
+import { getAllQuestions } from '@/api/Question';
 const routes = [
     {
         path: '/admin',
@@ -144,9 +145,19 @@ const routes = [
         component:testExam,
         beforeEnter:async(to,from,next)=>{
             const user=await getAllUsers();
+            const id = to.params.id;
+
             let findUser=user.find((item)=>item.status==true &&item.block==true);
             if(findUser){
-                next();
+                const questions=await getAllQuestions(`examId=${id}`) ;
+                console.log('dvv',questions);
+                if(questions.length!=0){
+                    next();
+                }else{
+                    alert('Đề thi này không co câu hỏihỏi');
+                    next(`/user/detailExam/${id}`);
+                }
+
             }else{
                 console.log('11111'); 
                 next('/userLogin');
